@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>To-Do List</title>
+</head>
+<body>
+    <h1>To-Do List Application</h1>
+
+    <form action="/add" method="POST">
+        <input type="text" name="title" placeholder="Enter a task" required>
+        <button type="submit">Add Task</button>
+    </form>
+
+    <hr>
+
+    {% for task in tasks %}
+        <p>
+            {% if task["completed"] == 1 %}
+                <s>{{ task["title"] }}</s>
+            {% else %}
+                {{ task["title"] }}
+                <a href="/complete/{{ task['id'] }}">Complete</a>
+            {% endif %}
+
+            <a href="/delete/{{ task['id'] }}">Delete</a>
+        </p>
+    {% endfor %}
+</body>
+</html>
